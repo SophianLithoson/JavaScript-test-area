@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./form-validation.css">
+</head>
+
+<body>
+    <form>
+        <p>
+            <label>
+                Email:
+                <input type="text" id="email" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Country:
+                <input type="text" id="country" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Zip Code:
+                <input type="number" id="zip-code" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Password:
+                <input type="password" id="password" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Confirm Password:
+                <input type="password" id="confirm-password" />
+            </label>
+        </p>
+        <div>
+            <button id="cancel-btn" value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirm-btn" value="default">Confirm</button>
+        </div>
+    </form>
+    <dialog id="high-five-dialog">
+        <h2>High five, bro!</h2>
+    </dialog>
+    <script src="./form-validation.js" defer></script>
+</body>
+
+</html>
