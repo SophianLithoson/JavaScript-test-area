@@ -9,39 +9,33 @@
 </head>
 
 <body>
-    <form>
-        <p>
-            <label>
-                Email:
-                <input type="text" id="email" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Country:
-                <input type="text" id="country" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Zip Code:
-                <input type="number" id="zip-code" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Password:
-                <input type="password" id="password" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Confirm Password:
-                <input type="password" id="confirm-password" />
-            </label>
-        </p>
+    <form novalidate>
+        <label for="email">
+            <span>Email:</span>
+            <input type="text" id="email" />
+        </label>
+        <div class="error" arial-live="polite"></div>
+        <label for="country">
+            <span>Country:</span>
+            <input type="text" id="country" />
+        </label>
+        <div class="error" arial-live="polite"></div>
+        <label for="zipCode">
+            <span>Zip Code:</span>
+            <input type="number" id="zipCode" />
+        </label>
+        <div class="error" arial-live="polite"></div>
+        <label for="password">
+            <span>Password:</span>
+            <input type="password" id="password" />
+        </label>
+        <div class="error" arial-live="polite"></div>
+        <label for="confirmPassword">
+            <span>Confirm Password:</span>
+            <input type="password" id="confirmPassword" />
+        </label>
+        <div class="error" arial-live="polite"></div>
         <div>
-            <button id="cancel-btn" value="cancel" formmethod="dialog">Cancel</button>
             <button id="confirm-btn" value="default">Confirm</button>
         </div>
     </form>
