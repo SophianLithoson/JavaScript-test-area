@@ -11,12 +11,12 @@ form {
     border-radius: 1em;
 }
 
-input:invalid {
+.invalid {
     border-color: rgb(221, 0, 0);
     box-shadow: 0 0 1px 1px rgb(158, 9, 9);
 }
 
-input:focus:invalid {
+input:focus.invalid {
     outline: none;
 }
 
@@ -26,13 +26,16 @@ label {
 }
 
 #high-five-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 3rem auto;
+    width: 325px;
     padding: 1rem;
-    border: none;
+    border: 2px solid #CCC;
     box-shadow: 4px 4px 4px #414141;
+    visibility: hidden;
+}
+
+#high-five-dialog.active {
+    visibility: visible;
 }
 
 .error {

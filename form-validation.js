@@ -1,10 +1,14 @@
+let areAllValid = true;
+const formInputs = Array.from(document.getElementsByTagName("input"));
+const confirmBtn = document.getElementById("confirm-btn");
+
 const criteriaAndErrors = {
     email: [
         "([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)",
         "Please use format user@domain"
     ],
     country: [
-        "[a-zA-Z]+",
+        "([a-zA-Z]+)",
         "Text only, one character minimum"
     ],
     zipCode: [
@@ -21,22 +25,19 @@ const criteriaAndErrors = {
     ]
 }
 
-let areAllValid = true;
-const formInputs = Array.from(document.getElementsByTagName("input"));
-
 function validate(formElementID) {
     const formElement = document.getElementById(formElementID);
     const errorElement = formElement.parentElement.nextElementSibling;
     const tester = new RegExp(criteriaAndErrors[formElementID][0], "");
 
     if (tester.test(formElement.value)) {
-        formElement.setAttribute("isvalid", "true");
+        formElement.classList.remove("invalid");
         errorElement.classList.remove("active");
         errorElement.textContent = "";
         return true;
     }
     else {
-        formElement.setAttribute("isvalid", "false");
+        formElement.classList.add("invalid");
         errorElement.classList.add("active");
         errorElement.textContent = criteriaAndErrors[formElementID][1];
         return false;
@@ -45,31 +46,43 @@ function validate(formElementID) {
 }
 
 function validateForm() {
+    areAllValid = true;
+
     formInputs.forEach((formInput) => {
         areAllValid = (areAllValid && validate(formInput.id));
     });
 
     const password = document.getElementById("password");
     const confirmPassword = document.getElementById("confirmPassword");
+    const confirmPwdError = confirmPassword.parentElement.nextElementSibling;
 
     if (password.value !== confirmPassword.value) {
         areAllValid = false;
-        const confirmPwdErrorr = confirmPassword.parentElement.nextElementSibling;
-        confirmPwdErrorr.classList.add("active");
-        confirmPwdErrorr.textContent = "Passwords must match";
+        confirmPassword.classList.add("invalid");;
+        confirmPwdError.classList.add("active");
+        confirmPwdError.textContent = "Passwords must match";
+    }
+    else {
+        confirmPassword.classList.remove("invalid");
+        confirmPwdError.classList.remove("active");
+        confirmPwdError.textContent = "";
     }
 }
 
-function highFiveIfValid() {
+function highFiveIfValid(event) {
+    event.preventDefault();
     validateForm();
 
     if (areAllValid) {
         const dialog = document.getElementById("high-five-dialog");
-        dialog.showModal();
+        dialog.classList.add("active");
     }
 }
 
 formInputs.forEach((formInput) => {
     formInput.addEventListener("blur", validateForm);
 });
+
+confirmBtn.addEventListener("click", highFiveIfValid);
+
 
